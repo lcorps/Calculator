@@ -1,1 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        body { font-family: Arial; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f4f4f4; }
+        #calculator { padding: 20px; border: 1px solid #ccc; border-radius: 10px; background: white; }
+        #display { width: 100%; height: 50px; font-size: 24px; text-align: right; margin-bottom: 10px; }
+        button { width: 50px; height: 50px; font-size: 20px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
 
+<div id="calculator">
+    <input type="text" id="display" disabled>
+    <div>
+        <button onclick="append('1')"><span>1</span></button>
+        <button onclick="append('2')"><span>2</span></button>
+        <button onclick="append('3')"><span>3</span></button>
+        <button onclick="setOp('+')"><span>+</span></button>
+    </div>
+    <div>
+        <button onclick="append('4')"><span>4</span></button>
+        <button onclick="append('5')"><span>5</span></button>
+        <button onclick="append('6')"><span>6</span></button>
+        <button onclick="setOp('-')"><span>-</span></button>
+    </div>
+    <div>
+        <button onclick="append('7')"><span>7</span></button>
+        <button onclick="append('8')"><span>8</span></button>
+        <button onclick="append('9')"><span>9</span></button>
+        <button onclick="setOp('*')"><span>*</span></button>
+    </div>
+    <div>
+        <button onclick="clearDisp()"><span>C</span></button>
+        <button onclick="append('0')"><span>0</span></button>
+        <button onclick="calculate()"><span>=</span></button>
+        <button onclick="setOp('/')"><span>/</span></button>
+    </div>
+</div>
+
+<script>
+    let current = '', operation = '', previous = '';
+
+    function append(num) { current += num; update(); }
+    function setOp(op) { if (current) { previous = current; operation = op; current = ''; } }
+    function calculate() {
+        let result;
+        const prev = parseFloat(previous), curr = parseFloat(current);
+        if (isNaN(prev) || isNaN(curr)) return;
+        switch (operation) {
+            case '+': result = prev + curr; break;
+            case '-': result = prev - curr; break;
+            case '*': result = prev * curr; break;
+            case '/': result = prev / curr; break;
+        }
+        current = result; operation = ''; previous = ''; update();
+    }
+    function clearDisp() { current = ''; previous = ''; operation = ''; update(); }
+    function update() { document.getElementById('display').value = current; }
+</script>
+
+</body>
+</html>
