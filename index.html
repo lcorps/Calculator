@@ -51,47 +51,84 @@
             <button onclick="append('1')"><span>1</span></button>
             <button onclick="append('2')"><span>2</span></button>
             <button onclick="append('3')"><span>3</span></button>
-            <button onclick="setOp('+')"><span>+</span></button>
+            <button onclick="appendOp('+')"><span>+</span></button>
         </div>
         <div>
             <button onclick="append('4')"><span>4</span></button>
             <button onclick="append('5')"><span>5</span></button>
             <button onclick="append('6')"><span>6</span></button>
-            <button onclick="setOp('-')"><span>-</span></button>
+            <button onclick="appendOp('-')"><span>-</span></button>
         </div>
         <div>
             <button onclick="append('7')"><span>7</span></button>
             <button onclick="append('8')"><span>8</span></button>
             <button onclick="append('9')"><span>9</span></button>
-            <button onclick="setOp('*')"><span>*</span></button>
+            <button onclick="appendOp('*')"><span>*</span></button>
         </div>
         <div>
             <button onclick="clearDisp()"><span>C</span></button>
             <button onclick="append('0')"><span>0</span></button>
             <button onclick="calculate()"><span>=</span></button>
-            <button onclick="setOp('/')"><span>/</span></button>
+            <button onclick="appendOp('/')"><span>/</span></button>
         </div>
     </div>
 
     <script>
-        let current = '', operation = '', previous = '';
+        let current = '';
+        let operation = '';
+        let previous = '';
 
-        function append(num) { current += num; update(); }
-        function setOp(op) { if (current) { previous = current; operation = op; current = ''; } }
+        function append(num) { 
+            current += num;
+            update();
+            autoCalculate();
+        }
+        
+        function appendOp(op) {
+            if (current) {
+                previous = current;
+                operation = op;
+                current = '';
+                update();
+            }
+        }
+
         function calculate() {
             let result;
-            const prev = parseFloat(previous), curr = parseFloat(current);
+            const prev = parseFloat(previous);
+            const curr = parseFloat(current);
+
             if (isNaN(prev) || isNaN(curr)) return;
+
             switch (operation) {
                 case '+': result = prev + curr; break;
                 case '-': result = prev - curr; break;
                 case '*': result = prev * curr; break;
                 case '/': result = prev / curr; break;
+                default: return;
             }
-            current = result; operation = ''; previous = ''; update();
+            current = result;
+            operation = '';
+            previous = '';
+            update();
         }
-        function clearDisp() { current = ''; previous = ''; operation = ''; update(); }
-        function update() { document.getElementById('display').value = current; }
+
+        function autoCalculate() {
+            if (previous && operation && current) {
+                calculate();
+            }
+        }
+
+        function clearDisp() { 
+            current = ''; 
+            previous = ''; 
+            operation = ''; 
+            update(); 
+        }
+
+        function update() { 
+            document.getElementById('display').value = current; 
+        }
     </script>
 
 </body>
