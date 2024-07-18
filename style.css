@@ -1,62 +1,111 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
 
-  }
-  html {
-    font-family: "Roboto", "Noto sans", "Helvetica", sans-serif;
+html {
+    font-family: "Roboto", "Noto Sans", "Helvetica", sans-serif;
     font-size: 14px;
-    background-color: #3498db;
+    background-color: #f0f0f0; /* Updated background color */
     height: 100%;
-  }
+}
 
-  .calculator{
-    width: 350px;
-    height: auto;
-    margin: 70px auto 0;
-    overflow: hidden;
-    box-shadow: 4px 4px rgba(0, 0, 0, .2);
-  }
+.calculator {
+    width: 300px; /* Adjusted width for responsiveness */
+    margin: 50px auto; /* Centering the calculator */
+    padding: 20px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-  .calculator span{
-    -moz--user-select: none;
-    user-select: none;
-  }
-
-  .top{
-    position: relative;
-    height: 150px;
-    background-color: white;
-  }
-  
-  .top .unit{
-    text-transform: uppercase;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    font-weight: 700;
-    color: #757575;
- }
-
- .top .screen{
-    position: relative;
-    width: 100%;
-    top: 20%;
-    height: 80%;
- }
-
- .screen > div{
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-    padding: 5px;
+.top {
+    background-color: #fff;
+    padding: 10px;
     text-align: right;
- }
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
 
- .screen .input{
+.top .unit {
+    font-weight: bold;
     color: #757575;
-    height: 60%;
-    font-size: 35px;
- }
+}
+
+.screen {
+    background-color: #004985;
+    height: 60px;
+    padding: 10px;
+    font-size: 24px;
+    text-align: right;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.input {
+    color: #757575;
+}
+
+.result {
+    color: #757575;
+}
+
+.bottom {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column {
+    width: 25%;
+    text-align: center;
+    padding: 5px;
+}
+
+.keys {
+    width: 75%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.keys .column {
+    flex-grow: 1;
+}
+
+.keys .column span {
+    display: inline-block;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.keys .column span:hover {
+    background-color: #e0e0e0;
+}
+
+.operators {
+    width: 25%;
+    text-align: center;
+}
+
+.operators span {
+    display: block;
+    width: 100%;
+    padding: 15px 0;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin: 5px 0;
+}
+
+.operators span:hover {
+    background-color: #e0e0e0;
+}
